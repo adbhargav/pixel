@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { presetSections } from "../data/presetsData";
 
 // HERO SECTION IMAGES
@@ -42,6 +42,7 @@ export default function Presets() {
   // HERO SLIDER LOGIC
   const [current, setCurrent] = useState(0);
   const timerRef = useRef(null);
+  const navigate = useNavigate();
 
   // Sort state
   const [sortBy, setSortBy] = useState("name-asc");
@@ -75,6 +76,11 @@ export default function Presets() {
     timerRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroImages.length);
     }, 2000);
+  };
+
+  // Helper for route
+  const getPresetLink = (section, preset) => {
+    return `/presets/${section.title.toLowerCase().replace(/[^a-z]+/g, '-')}/${preset.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   };
 
   return (
@@ -163,28 +169,32 @@ export default function Presets() {
             <h2 className="text-3xl font-bold mb-2">{section.title}</h2>
             <p className="text-gray-400 mb-6">{section.description}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-              {sortPresets(section.presets, sortBy).map((preset, pidx) => (
-                <div
-                  key={preset.name}
-                  className="rounded-xl bg-gray-900 bg-opacity-80 shadow-lg overflow-hidden flex flex-col transition hover:scale-105 duration-300"
-                >
-                  <Link
-                    to={`/presets/${section.title.toLowerCase().replace(/[^a-z]+/g, '-')}/${preset.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-                    className="w-full h-[130px] sm:h-[160px] flex-shrink-0 block"
+              {sortPresets(section.presets, sortBy).map((preset, pidx) => {
+                const presetLink = getPresetLink(section, preset);
+                return (
+                  <div
+                    key={preset.name}
+                    className="rounded-xl bg-gray-900 bg-opacity-80 shadow-lg overflow-hidden flex flex-col transition hover:scale-105 duration-300 cursor-pointer"
+                    onClick={() => navigate(presetLink)}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View details for ${preset.name}`}
                   >
-                    <img
-                      src={preset.image}
-                      alt={preset.name}
-                      className="w-full h-full object-cover cursor-pointer"
-                    />
-                  </Link>
-                  <div className="p-3 flex flex-col flex-1">
-                    <h3 className="text-base font-bold mb-1">{preset.name}</h3>
-                    <p className="text-gray-300 text-xs mb-1 flex-1">{preset.description}</p>
-                    <span className="text-white font-bold text-sm mt-1">{preset.price}</span>
+                    <div className="w-full h-[130px] sm:h-[160px] flex-shrink-0 block">
+                      <img
+                        src={preset.image}
+                        alt={preset.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-3 flex flex-col flex-1">
+                      <h3 className="text-base font-bold mb-1">{preset.name}</h3>
+                      <p className="text-gray-300 text-xs mb-1 flex-1">{preset.description}</p>
+                      <span className="text-white font-bold text-sm mt-1">{preset.price}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ))}
