@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const images = [
   "/assets/hero1.png",
@@ -78,6 +79,7 @@ export default function Home() {
   // Hero background slider
   const [current, setCurrent] = useState(0);
   const timerRef = useRef(null);
+  const navigate = useNavigate();
 
   // Auto-slide effect
   useEffect(() => {
@@ -111,19 +113,9 @@ export default function Home() {
     }, 2000);
   };
 
-  // Grading upload section
-  const fileInputRef = useRef(null);
-
+  // THIS is the function that navigates to /grading:
   const handleUploadClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      alert(`Selected file: ${file.name}`);
-      // Add upload logic here
-    }
+    navigate("/grading");
   };
 
   return (
@@ -215,17 +207,10 @@ export default function Home() {
           </p>
           <button
             className="bg-white text-black font-bold px-8 py-3 rounded-full shadow hover:bg-gray-200 transition"
-            onClick={handleUploadClick}
+            onClick={handleUploadClick}  // <-- THIS CONNECTS TO GRADING PAGE!
           >
             Upload Your Graded Image
           </button>
-          <input
-            type="file"
-            ref={fileInputRef}
-            accept="image/*"
-            className="hidden"
-            onChange={handleFileChange}
-          />
         </div>
       </section>
 
