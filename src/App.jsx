@@ -20,6 +20,7 @@ const App = () => {
           <Route path="/presets" element={<Presets />} />
           <Route path="/presets/:section/:preset" element={<PresetDetails />} />
           <Route path="/grading/:section/:grading" element={<Grading />} />
+          <Route path="/grading" element={<Grading />} /> 
           {/* other routes */}
         </Routes>
       </main>
