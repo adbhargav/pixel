@@ -181,12 +181,12 @@ export default function Presets() {
                     role="button"
                     aria-label={`View details for ${preset.name}`}
                   >
-                    {/* Full image, no border-radius, no cropping */}
+                    {/* Full image, no border-radius, no cropping, white border (thin) */}
                     <div className="w-full aspect-[4/3] bg-black flex items-center justify-center">
                       <img
                         src={preset.image}
                         alt={preset.name}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain border-2 border-white"
                         style={{ display: "block" }}
                       />
                     </div>
