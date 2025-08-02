@@ -107,16 +107,20 @@ export default function PresetDetails() {
 
   return (
     <div className="min-h-screen bg-black text-white font-sans pb-24 flex flex-col items-center pt-10">
-      <div className="max-w-4xl w-full bg-gray-900 rounded-xl shadow-lg overflow-hidden">
+      <div className="max-w-4xl w-full bg-gray-900 shadow-lg overflow-hidden">
         {/* Side-by-side section */}
         <div className="flex flex-col md:flex-row">
           {/* Product Image - left */}
           <div className="md:w-1/2 w-full flex items-center justify-center p-6">
-            <img
-              src={foundPreset.image}
-              alt={foundPreset.name}
-              className="w-full max-w-[320px] h-[320px] object-cover rounded-lg shadow"
-            />
+            {/* Remove all gap between border and image by using object-cover */}
+            <div className="w-[320px] h-[520px] bg-black flex items-center justify-center border-2 border-white">
+              <img
+                src={foundPreset.image}
+                alt={foundPreset.name}
+                className="w-full h-full object-cover m-0 p-0 block"
+                style={{ display: "block" }}
+              />
+            </div>
           </div>
           {/* Product Details - right */}
           <div className="md:w-1/2 w-full p-6 flex flex-col justify-center">
@@ -149,13 +153,13 @@ export default function PresetDetails() {
             <div className="flex gap-4 mt-2">
               <Link
                 to="/presets"
-                className="inline-block bg-white text-black px-4 py-2 rounded shadow font-bold hover:bg-gray-200 transition"
+                className="inline-block bg-white text-black px-4 py-2 shadow font-bold hover:bg-gray-200 transition"
               >
                 Back to Presets
               </Link>
               <button
                 onClick={handleAddToCart}
-                className="inline-block bg-white text-black px-4 py-2 rounded shadow font-bold hover:bg-yellow-300 transition"
+                className="inline-block bg-white text-black px-4 py-2 shadow font-bold hover:bg-yellow-300 transition"
               >
                 Add to Cart
               </button>
