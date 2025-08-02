@@ -86,7 +86,7 @@ export default function Presets() {
   return (
     <div className="min-h-screen bg-black text-white font-sans pb-24 pt-20">
       {/* HERO SECTION */}
-      <section className="relative w-full h-[60vh] flex items-center justify-center overflow-hidden rounded-xl ">
+      <section className="relative w-full h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Background slideshow */}
         <div className="absolute inset-0 w-full h-full">
           {heroImages.map((img, idx) => (
@@ -106,7 +106,7 @@ export default function Presets() {
         <button
           aria-label="Previous"
           onClick={handlePrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 rounded-full p-2 hover:bg-opacity-70 transition"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 hover:bg-opacity-70 transition"
         >
           <svg width="24" height="24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6" />
@@ -116,7 +116,7 @@ export default function Presets() {
         <button
           aria-label="Next"
           onClick={handleNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 rounded-full p-2 hover:bg-opacity-70 transition"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 hover:bg-opacity-70 transition"
         >
           <svg width="24" height="24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 6l6 6-6 6" />
@@ -139,6 +139,7 @@ export default function Presets() {
                   onChange={() => handleRadioChange(idx)}
                   className="peer appearance-none w-3 h-3 rounded-full border-2 border-white checked:bg-white checked:border-white transition"
                 />
+                <span className="sr-only">{`Slide ${idx + 1}`}</span>
               </label>
             ))}
           </form>
@@ -168,23 +169,25 @@ export default function Presets() {
           <div key={section.title} className="mb-16">
             <h2 className="text-3xl font-bold mb-2">{section.title}</h2>
             <p className="text-gray-400 mb-6">{section.description}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
               {sortPresets(section.presets, sortBy).map((preset, pidx) => {
                 const presetLink = getPresetLink(section, preset);
                 return (
                   <div
                     key={preset.name}
-                    className="rounded-xl bg-gray-900 bg-opacity-80 shadow-lg overflow-hidden flex flex-col transition hover:scale-105 duration-300 cursor-pointer"
+                    className="bg-gray-900 bg-opacity-80 shadow-lg overflow-hidden flex flex-col transition hover:scale-105 duration-300 cursor-pointer"
                     onClick={() => navigate(presetLink)}
                     tabIndex={0}
                     role="button"
                     aria-label={`View details for ${preset.name}`}
                   >
-                    <div className="w-full h-[130px] sm:h-[160px] flex-shrink-0 block">
+                    {/* Full image, no border-radius, no cropping */}
+                    <div className="w-full aspect-[4/3] bg-black flex items-center justify-center">
                       <img
                         src={preset.image}
                         alt={preset.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
+                        style={{ display: "block" }}
                       />
                     </div>
                     <div className="p-3 flex flex-col flex-1">
