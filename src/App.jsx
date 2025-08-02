@@ -6,26 +6,29 @@ import PresetDetails from './pages/PresetDetails';
 import Home from './pages/Home';
 import Presets from './pages/Presets';
 import Grading from './pages/Grading';
-
-
-// ... other imports
+import Cart from './pages/Cart';
+import { CartProvider } from "./context/CartContext";
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
-      <Header />
-      <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/presets" element={<Presets />} />
-          <Route path="/presets/:section/:preset" element={<PresetDetails />} />
-          <Route path="/grading/:section/:grading" element={<Grading />} />
-          <Route path="/grading" element={<Grading />} /> 
-          {/* other routes */}
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+    <CartProvider>
+      <ScrollToTop />
+      <div className="flex flex-col min-h-screen bg-black text-white">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/presets" element={<Presets />} />
+            <Route path="/presets/:section/:preset" element={<PresetDetails />} />
+            <Route path="/grading/:section/:grading" element={<Grading />} />
+            <Route path="/grading" element={<Grading />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </CartProvider>
   );
 };
 
