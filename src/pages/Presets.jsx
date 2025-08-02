@@ -106,7 +106,7 @@ export default function Presets() {
         <button
           aria-label="Previous"
           onClick={handlePrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 hover:bg-opacity-70 transition"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-70 transition"
         >
           <svg width="24" height="24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <path d="M15 18l-6-6 6-6" />
@@ -116,7 +116,7 @@ export default function Presets() {
         <button
           aria-label="Next"
           onClick={handleNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 hover:bg-opacity-70 transition"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-70 transition"
         >
           <svg width="24" height="24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 6l6 6-6 6" />
