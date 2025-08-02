@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { presetSections } from "../data/presetsData";
+import { useCart } from "../context/CartContext"; // <-- Import the useCart hook
 
 // Helper function for formatting stars
 function Stars({ rating }) {
@@ -14,6 +15,8 @@ function Stars({ rating }) {
 
 export default function PresetDetails() {
   const { section, preset } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useCart(); // <-- Use CartContext's addToCart
 
   // Find section and preset
   const foundSection = presetSections.find(
@@ -62,9 +65,18 @@ export default function PresetDetails() {
     content: "",
   });
 
-  // Dummy cart handler
   function handleAddToCart() {
-    alert("Added to cart!");
+    if (!foundPreset || !foundSection) return;
+    addToCart({
+      id: foundPreset.id || `${foundSection.title}-${foundPreset.name}`,
+      name: foundPreset.name,
+      image: foundPreset.image,
+      price: typeof foundPreset.price === "string"
+        ? parseFloat(foundPreset.price.replace(/[^0-9.]/g, ""))
+        : foundPreset.price,
+      section: foundSection.title,
+    });
+    navigate("/cart");
   }
 
   if (!foundPreset || !foundSection) {
