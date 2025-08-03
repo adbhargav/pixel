@@ -165,13 +165,13 @@ export default function PresetDetails() {
             <div className="flex gap-4 mt-2">
               <Link
                 to="/presets"
-                className="inline-block bg-white text-black px-4 py-2 shadow font-bold hover:bg-gray-200 transition"
+                className="inline-block bg-white text-black px-4 py-2 shadow font-bold transition"
               >
                 Back to Presets
               </Link>
               <button
                 onClick={handleAddToCart}
-                className="inline-block bg-white text-black px-4 py-2 shadow font-bold hover:bg-yellow-300 transition"
+                className="inline-block bg-white text-black px-4 py-2 shadow font-bold  transition"
               >
                 Add to Cart
               </button>
