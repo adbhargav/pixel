@@ -212,32 +212,36 @@ export default function Home() {
         </div>
       </section>
 
-      {/* GRADING SECTION */}
+     {/* GRADING SECTION */}
       <section className="w-full mt-10 flex flex-col md:flex-row items-center justify-center bg-black rounded-xl p-6 md:p-8 shadow-lg">
-        {/* Grading Sample Image (vertical) */}
-        <div className="w-full md:w-1/3 flex justify-center mb-8 md:mb-0 md:mr-8">
-          <img
-            src="/assets/gd6.jpg"
-            alt="Gallery Submission Example"
-            className="rounded-lg shadow-lg w-auto h-[200px] sm:h-[280px] md:h-[320px] object-cover border border-gray-700"
-            style={{ maxWidth: "240px" }}
-          />
-        </div>
-        {/* Description */}
-        <div className="w-full md:w-2/3 text-white flex flex-col items-start">
-          <div className="max-w-2xl w-full">
-            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-extrabold mb-3 sm:mb-5 md:mb-6 text-left leading-tight">
+        {/* Content for mobile: heading (center), image (center), text & button (center). For desktop: image left, text right */}
+        <div className="w-full flex flex-col md:flex-row items-center justify-center">
+          {/* Heading - always first, centered on mobile, left on desktop */}
+          <div className="w-full md:w-2/3 order-1 md:order-2 flex flex-col items-center md:items-start mb-6 md:mb-0">
+            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-extrabold mb-3 sm:mb-5 md:mb-6 text-center md:text-left leading-tight w-full">
               Submit Your Best Graded Shot!
             </h2>
-            <p className="mb-5 sm:mb-7 text-xs xs:text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed text-left">
-              Proud of your color grading skills? Upload your favorite graded image and get a chance to be featured on our site! If your work stands out, we’ll showcase it in our gallery to inspire fellow creators.
-            </p>
-            <button
-              className="bg-white text-black font-bold px-8 py-3 rounded-full shadow hover:bg-gray-200 transition"
-              onClick={handleUploadClick}
-            >
-              Upload Your Graded Image
-            </button>
+            {/* Image - centered below heading on mobile, left on desktop */}
+            <div className="w-full flex justify-center md:justify-start mb-6 md:mb-0">
+              <img
+                src="/assets/gd6.jpg"
+                alt="Gallery Submission Example"
+                className="rounded-lg shadow-lg w-auto h-[200px] sm:h-[280px] md:h-[320px] object-cover border border-gray-700"
+                style={{ maxWidth: "240px" }}
+              />
+            </div>
+            {/* Description and Button - below image, centered on mobile, left on desktop */}
+            <div className="max-w-2xl w-full flex flex-col items-center md:items-start">
+              <p className="mb-5 sm:mb-7 text-xs xs:text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed text-center md:text-left">
+                Proud of your color grading skills? Upload your favorite graded image and get a chance to be featured on our site! If your work stands out, we’ll showcase it in our gallery to inspire fellow creators.
+              </p>
+              <button
+                className="bg-white text-black font-bold px-8 py-3 rounded-full shadow hover:bg-gray-200 transition"
+                onClick={handleUploadClick}
+              >
+                Upload Your Graded Image
+              </button>
+            </div>
           </div>
         </div>
       </section>
