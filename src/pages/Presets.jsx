@@ -107,7 +107,7 @@ export default function Presets() {
                       <img
                         src={preset.image}
                         alt={preset.name}
-                        className="w-full h-full object-contain border-2 border-white"
+                        className="w-full h-full object-contain "
                         style={{ display: "block" }}
                       />
                     </div>
