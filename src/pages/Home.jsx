@@ -124,10 +124,10 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-10 w-full flex flex-col items-center justify-center px-3">
           <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 leading-tight">
+            <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight">
               Welcome to Pixelfable
             </h1>
-            <p className="text-sm sm:text-lg md:text-xl mb-5 sm:mb-8 leading-normal">
+            <p className="text-xs xs:text-sm sm:text-base md:text-xl mb-4 sm:mb-5 md:mb-8 leading-relaxed text-center text-gray-200 max-w-xl mx-auto">
               Discover premium LUTs and color grading presets to elevate your photos and videos.
             </p>
             <a
@@ -156,26 +156,25 @@ export default function Home() {
 
       {/* ABOUT PIXELFABLE SECTION */}
       <section className="w-full flex flex-col md:flex-row items-center justify-center bg-black p-6 md:p-8 shadow-lg">
-        {/* About Description (left) */}
-        <div className="w-full md:w-2/3 text-white flex flex-col items-start order-2 md:order-1">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-left leading-tight">
+        {/* About Description (left, always above on mobile) */}
+        <div className="w-full md:w-2/3 text-white flex flex-col items-start order-1 md:order-1">
+          <div className="max-w-2xl w-full">
+            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-extrabold mb-3 sm:mb-5 md:mb-6 text-left leading-tight">
               About Pixelfable
             </h2>
-            <p className="mb-6 sm:mb-8 text-base sm:text-lg text-gray-200 leading-normal">
-              Pixelfable is dedicated to empowering creators, photographers, and filmmakers with premium color grading tools and LUTs. 
-              Our mission is to help you bring your visual stories to life with vibrant, professional-grade color enhancements. 
+            <p className="mb-5 sm:mb-7 text-xs xs:text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed text-left">
+              Pixelfable is dedicated to empowering creators, photographers, and filmmakers with premium color grading tools and LUTs.
+              Our mission is to help you bring your visual stories to life with vibrant, professional-grade color enhancements.
               With a passion for creative expression and technical excellence, Pixelfable supports artists at every level—whether you’re a seasoned professional or just starting your creative journey.
             </p>
           </div>
         </div>
-        {/* About Image (right, increased width) */}
-        <div className="w-full md:w-1/3 flex justify-center mb-8 md:mb-0 md:ml-8 order-1 md:order-2">
-        <img
+        {/* About Image (right, below on mobile) */}
+        <div className="w-full md:w-1/3 flex justify-center mb-8 md:mb-0 md:ml-8 order-2 md:order-2">
+          <img
             src="/assets/hero4.png"
             alt="About Pixelfable"
-            className="rounded-lg shadow-lg w-auto h-[300px] object-cover border border-gray-700"
-            style={{ maxWidth: "300px" }}
+            className="rounded-lg shadow-lg w-full max-w-[320px] h-[320px] object-cover border border-gray-700"
           />
         </div>
       </section>
@@ -183,10 +182,10 @@ export default function Home() {
       {/* FEATURED PRESETS SECTION */}
       <section className="w-full mt-10 px-2 md:px-0 bg-black">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-8 sm:mb-12 text-center leading-tight">
+          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-extrabold text-white mb-6 sm:mb-10 md:mb-12 text-center leading-tight">
             Featured Presets
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8">
             {featuredPresets.map((preset, idx) => (
               <div
                 key={preset.name}
@@ -200,10 +199,10 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-4 flex flex-col items-center text-center">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1 flex items-center justify-center gap-2 leading-tight">
+                  <h3 className="text-base xs:text-lg sm:text-xl font-bold text-white mb-1 flex items-center justify-center gap-2 leading-tight">
                     {preset.name}
                   </h3>
-                  <div className="text-gray-200 text-xs sm:text-sm mb-1 leading-normal text-center">
+                  <div className="text-gray-200 text-xs xs:text-sm sm:text-base mb-1 leading-normal text-center">
                     {preset.description}
                   </div>
                 </div>
@@ -226,11 +225,11 @@ export default function Home() {
         </div>
         {/* Description */}
         <div className="w-full md:w-2/3 text-white flex flex-col items-start">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-left leading-tight">
+          <div className="max-w-2xl w-full">
+            <h2 className="text-lg xs:text-xl sm:text-2xl md:text-4xl font-extrabold mb-3 sm:mb-5 md:mb-6 text-left leading-tight">
               Submit Your Best Graded Shot!
             </h2>
-            <p className="mb-6 sm:mb-8 text-base sm:text-lg text-gray-200 leading-normal">
+            <p className="mb-5 sm:mb-7 text-xs xs:text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed text-left">
               Proud of your color grading skills? Upload your favorite graded image and get a chance to be featured on our site! If your work stands out, we’ll showcase it in our gallery to inspire fellow creators.
             </p>
             <button
