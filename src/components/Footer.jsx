@@ -10,7 +10,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white py-10 px-4 font-sans">
+    <footer className="bg-gray-900 bg-opacity-80 text-white py-10 px-4 font-sans">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 w-full">
         {/* Logo + Description */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left col-span-1">
