@@ -1,13 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { presetSections } from "../data/presetsData";
 
-// HERO SECTION IMAGES
-const heroImages = [
-  "/assets/hero1.png",
-  "/assets/hero2.png",
-  "/assets/hero3.png",
-];
+// HERO SECTION IMAGE (only one image)
+const HERO_IMAGE = "/assets/hero3.png";
 
 const SORT_OPTIONS = [
   { value: "name-asc", label: "Name (A-Z)" },
@@ -39,44 +35,8 @@ function sortPresets(presets, sortBy) {
 }
 
 export default function Presets() {
-  // HERO SLIDER LOGIC
-  const [current, setCurrent] = useState(0);
-  const timerRef = useRef(null);
-  const navigate = useNavigate();
-
-  // Sort state
   const [sortBy, setSortBy] = useState("name-asc");
-
-  useEffect(() => {
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % heroImages.length);
-    }, 2000);
-    return () => clearInterval(timerRef.current);
-  }, []);
-
-  const handleRadioChange = (idx) => {
-    clearInterval(timerRef.current);
-    setCurrent(idx);
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % heroImages.length);
-    }, 2000);
-  };
-
-  const handlePrev = () => {
-    clearInterval(timerRef.current);
-    setCurrent((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % heroImages.length);
-    }, 2000);
-  };
-
-  const handleNext = () => {
-    clearInterval(timerRef.current);
-    setCurrent((prev) => (prev + 1) % heroImages.length);
-    timerRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % heroImages.length);
-    }, 2000);
-  };
+  const navigate = useNavigate();
 
   // Helper for route
   const getPresetLink = (section, preset) => {
@@ -86,68 +46,26 @@ export default function Presets() {
   return (
     <div className="min-h-screen bg-black text-white font-sans pb-24 pt-20">
       {/* HERO SECTION */}
-      <section className="relative w-full h-[60vh] flex items-center justify-center overflow-hidden">
-        {/* Background slideshow */}
-        <div className="absolute inset-0 w-full h-full">
-          {heroImages.map((img, idx) => (
-            <img
-              key={img}
-              src={img}
-              alt={`Presets Hero ${idx + 1}`}
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
-                idx === current ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ zIndex: idx === current ? 1 : 0 }}
-            />
-          ))}
-          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-        </div>
-        {/* Left Arrow */}
-        <button
-          aria-label="Previous"
-          onClick={handlePrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-70 transition"
-        >
-          <svg width="24" height="24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        {/* Right Arrow */}
-        <button
-          aria-label="Next"
-          onClick={handleNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black bg-opacity-40 p-2 rounded-full hover:bg-opacity-70 transition"
-        >
-          <svg width="24" height="24" fill="none" stroke="white" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 6l6 6-6 6" />
-          </svg>
-        </button>
+      <section className="relative w-full h-[38vh] min-h-[220px] flex items-center justify-center overflow-hidden mb-4">
+        {/* Background image */}
+        <img
+          src={HERO_IMAGE}
+          alt="Presets Hero"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ zIndex: 1 }}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white w-full">
-          <h1 className="text-5xl font-extrabold mb-4">Presets & LUTs</h1>
-          <p className="text-lg text-gray-300 mb-8 px-4">
+        <div className="relative z-20 text-center text-white w-full px-3 flex flex-col items-center justify-center">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-3 sm:mb-4">Presets & LUTs</h1>
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 sm:mb-8 max-w-xl">
             Explore our premium color grading presets and LUTs, designed for every creative style. Instantly elevate your photos and videos with professional-grade looks.
           </p>
-          {/* SMALL RADIO BUTTONS FOR SLIDES */}
-          <form className="mt-8 flex justify-center gap-4">
-            {heroImages.map((_, idx) => (
-              <label key={idx} className="flex flex-col items-center cursor-pointer">
-                <input
-                  type="radio"
-                  name="hero-slider"
-                  checked={current === idx}
-                  onChange={() => handleRadioChange(idx)}
-                  className="peer appearance-none w-3 h-3 rounded-full border-2 border-white checked:bg-white checked:border-white transition"
-                />
-                <span className="sr-only">{`Slide ${idx + 1}`}</span>
-              </label>
-            ))}
-          </form>
         </div>
       </section>
 
       {/* SORT BUTTON */}
-      <div className="max-w-6xl mx-auto px-4 mt-8 flex justify-end items-center">
+      <div className="max-w-6xl mx-auto px-4 mt-6 flex justify-end items-center">
         <label htmlFor="sortPresets" className="mr-2 font-semibold text-gray-200">
           Sort by:
         </label>
@@ -164,13 +82,16 @@ export default function Presets() {
       </div>
 
       {/* Sectioned Preset Categories */}
-      <section className="max-w-6xl mx-auto px-4 mt-8">
+      <section className="max-w-6xl mx-auto px-4 mt-4">
         {presetSections.map((section, idx) => (
-          <div key={section.title} className="mb-16">
-            <h2 className="text-3xl font-bold mb-2">{section.title}</h2>
-            <p className="text-gray-400 mb-6">{section.description}</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-              {sortPresets(section.presets, sortBy).map((preset, pidx) => {
+          <div
+            key={section.title}
+            className={`mb-4 ${idx === presetSections.length - 1 ? "mb-0" : ""}`}
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold mb-1">{section.title}</h2>
+            <p className="text-gray-400 mb-4 text-sm sm:text-base">{section.description}</p>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+              {sortPresets(section.presets, sortBy).map((preset) => {
                 const presetLink = getPresetLink(section, preset);
                 return (
                   <div
