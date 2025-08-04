@@ -14,7 +14,7 @@ export default function Navbar() {
         Pixe Fablo
       </Link>
 
-      {/* Desktop Nav */}
+      {/* Desktop Nav: visible only on md and up (laptops and larger) */}
       <div className="hidden md:flex space-x-6 items-center">
         <Link to="/" className="hover:underline text-white">Home</Link>
         <Link to="/presets" className="hover:underline text-white">Presets</Link>
@@ -27,7 +27,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Mobile Hamburger Icon */}
+      {/* Mobile Hamburger Icon: visible only below md */}
       <button
         className="md:hidden flex items-center text-white focus:outline-none"
         onClick={() => setMenuOpen((prev) => !prev)}
@@ -50,7 +50,7 @@ export default function Navbar() {
         </svg>
       </button>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu: visible only below md and when menuOpen */}
       {menuOpen && (
         <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex flex-col items-end md:hidden">
           <button
