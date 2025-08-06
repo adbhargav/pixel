@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 const images = [
   "/assets/hero1.png",
