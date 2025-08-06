@@ -34,7 +34,7 @@ export default function Grading() {
     <div className="min-h-screen w-full bg-black text-white pt-24 pb-16 flex flex-col items-center px-4">
       {/* ---- Description / Context ---- */}
       <div className="max-w-md mb-6 text-center">
-        <h1 className="text-3xl font-bold mb-2">Submit Your Graded Work</h1>
+        <h1 className="text-xl font-bold mb-2">Submit Your Graded Work</h1>
         <p className="text-gray-400 leading-relaxed">
           Already used one of our presets on your image? Upload your professionally graded
           result below for a chance to be featured on our official platforms.
