@@ -10,7 +10,7 @@ export default function Cart() {
   return (
     <div className="min-h-screen bg-black text-white font-sans pb-24 pt-20 flex flex-col items-center">
       <div className="max-w-3xl w-full bg-gray-900 shadow-lg rounded-lg p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center">Your Cart</h1>
+        <h1 className="text-2xl font-bold mb-6 text-center">Your Cart</h1>
         {cart.length === 0 ? (
           <div className="text-center my-20">
             <p className="text-gray-300 text-lg mb-6">Your cart is empty.</p>
